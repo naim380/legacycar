@@ -13,19 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('homepage');
+Route::get('/', "App\Http\Controllers\HomeController@homepage"
 
-});
-Route::get('/product', function () {
-   return view('products-list');
+);
+Route::get('/product', "App\Http\Controllers\ProductController@products_list"
 
-});
-Route::get('/product/{id}', function () {
-    $id = request("id");
-   return view('product-details');
-});
-Route::get('/cart', function () {
-    return view('cart');
+);
+Route::get('/product/{id}',"App\Http\Controllers\ProductController@product_details"
 
-});
+);
+Route::get('/cart', "App\Http\Controllers\CartController@cart"
+);
