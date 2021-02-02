@@ -1,1 +1,2 @@
-<h1>Fiche du produit {{request("id")}}</h1>
+<h1>Fiche du produit {{$id}}</h1>
+
