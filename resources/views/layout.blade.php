@@ -16,6 +16,7 @@
             <a href="/cart">Panier</a>
         </div>
     </div>
+
 <footer>
         Naïm EBRAHIM
         28 bis rue de la résistance
