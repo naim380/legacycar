@@ -2,7 +2,9 @@
 
 @section('content')
 
-    <h1>Fiche du produit {{$id_produit}}</h1>
+    <h1>Fiche du produit {{$car->id}}</h1>
+    <p>This is an awesome car {{ $car->marque}} - {{ $car->model}}</p>
+
 @endsection
 
 
