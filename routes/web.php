@@ -15,14 +15,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//Homepage
 Route::get('/', [HomeController::class, 'homepage']);
 
-
+//Catatogue
 Route::get('/product', [ProductController::class, 'product_list']);
 
-
+//Page product
 Route::get('/product/{id}',[ProductController::class, 'product_details']);
 
+//page panier
 Route::get('/cart', [CartController::class, 'cart']);
 
