@@ -10,15 +10,19 @@ class ProductController extends Controller
 {
     public function product_details($id)
     {
-        $cars = DB::select('select * from cars where id = ?', [$id]);
+        $car = Car::find($id);
+    if ($car->prix >=1000000){
+        return view('product-details',['car'=>$car,'prix'=>"cher"]);
+    }
+    else{
+        return view('product-details',['car'=>$car,'prix'=>"pas cher"]);
+    }
 
-        return view('product-details',['car'=>$cars[0]]);
-        //dd($cars);
     }
     public function product_list()
     {
        //dd(Cars::all());
-        $cars = DB::select('select * from cars');
+        $cars = Car::all();
         return view('products-list',['cars' => $cars]);
 
     }
