@@ -2,8 +2,8 @@
 
 @section('content')
 
-    <button type="button" class="btn btn-primary" data-bs-toggle="button" autocomplete="off">Toggle button</button>
-    <button type="button" class="btn btn-primary active" data-bs-toggle="button" autocomplete="off" aria-pressed="true">Active toggle button</button>
-    <button type="button" class="btn btn-primary" disabled data-bs-toggle="button" autocomplete="off">Disabled toggle button</button>
+    @foreach ($cars as $car)
+        <p>This is an awesome car {{ $car->marque}} - {{ $car->model}} : <form action="delete/{{$car->id}}" method="post">@csrf @method("delete") <button type="submit">supprimer</button></form></p>
+    @endforeach
 @endsection
 

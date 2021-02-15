@@ -33,10 +33,11 @@ Route::get('/formulaire', [BackofficeController::class, 'formulaire']);
 Route::post('/validate',[BackofficeController::class,'validation']);
 
 Route::delete('/delete/{id}', [BackofficeController::class, 'delete']);
+Route::get('/backoffice',[BackofficeController::class, 'backoffice'])->name("backoffice");
 Route::get('/formulaire', [BackofficeController::class, 'formulaire']);
-Route::put('/modifier',[BackofficeController::class,'modifier']);
+Route::put('/modifier/{id}',[BackofficeController::class,'modifier']);
 
-Route::get('/affichage/{id}',[BackofficeController::class,'affichage']);
+Route::get('/modifier/{id}',[BackofficeController::class,'affichage']);
 
 Route::get('/condition',[ConditionController::class,'affichage']);
 Route::post('/condition',[ConditionController::class,'condition']);

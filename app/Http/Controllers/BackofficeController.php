@@ -8,10 +8,7 @@ use Illuminate\Http\Request;
 
 class BackofficeController extends Controller
 {
-    public function backoffice()
-    {
-        return view('backoffice');
-    }
+
     public function formulaire()
     {
         return view('formulaire.formulaire');
@@ -21,9 +18,9 @@ class BackofficeController extends Controller
         $validated = $request->validate([
             'marque' => 'required',
             'model' => 'required',
-            'year' => 'required',
-            'km' => 'required',
-            'prix' => 'required',
+            'year' => 'required|numeric',
+            'km' => 'required|numeric',
+            'prix' => 'required|numeric',
             'picture' => 'required',
             'description' => 'required',
 
@@ -38,42 +35,49 @@ class BackofficeController extends Controller
         $Car->picture = $request->picture;
         $Car->description = $request->description;
         $Car->save();
-        return view('formulaire.formulaire');
+        return redirect()->route("backoffice");
+
     }
     public function delete($id)
     {
-        $car=Car::find($id);
+        $car = Car::find($id);
         $car->delete();
-        return view('formulaire.formulaire');
+        return redirect()->route("backoffice");
     }
     public function modifier(Request $request, $id)
     {
         $validated= $request->validate([
             'marque' => 'required',
             'model' => 'required',
-            'year' => 'required',
-            'km' => 'required',
-            'prix' => 'required',
+            'year' => 'required|numeric',
+            'km' => 'required|numeric',
+            'prix' => 'required|numeric',
             'picture' => 'required',
             'description' => 'required',
 
         ]);
-        $Car=Car::find($id);
-        $Car->seller_id = 1;
-        $Car->marque = $request->marque;
-        $Car->model = $request->model;
-        $Car->year = $request->year;
-        $Car->km = $request->km;
-        $Car->prix = $request->prix;
-        $Car->picture = $request->picture;
-        $Car->description = $request->description;
-        $Car->save();
-        return view('formulaire.formulaire');
+        $car=Car::find($id);
+        //dd($car);
+        //dd($request->year);
+        $car->marque = $request->input("marque");
+        $car->model = $request->input("model");
+        $car->year = $request->input("year");
+        $car->km = $request->input("km");
+        $car->prix = $request->input("prix");
+        $car->picture = $request->input("picture");
+        $car->description = $request->input("description");
+        $car->save();
+        //dd($car);
+        return view('formulaire.update',['car'=>$car]);
     }
     public function affichage($id){
         $car=Car::find($id);
         return view('formulaire.update',['car'=>$car]);
 
+    }
+    public function backoffice(){
+        $cars=Car::all();
+        return  view('backoffice',['cars'=>$cars]);
     }
 }
 
