@@ -9,4 +9,9 @@ class Car extends Model
 {
     use HasFactory;
     public $timestamps=false;
+    protected $guarded = [];
+    public function vendeur()
+    {
+        return $this->belongsTo(seller::class, 'seller_id', 'id');
+    }
 }
